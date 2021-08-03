@@ -16,7 +16,9 @@ ext {
             [configuration: "implementation", dependency: "$circleImageView"],
             [configuration: "implementation", dependency: "$picasso"],
             [configuration: "implementation", dependency: "$navigationUi"],
-            [configuration: "implementation", dependency: "$navigationFragment"]
+            [configuration: "implementation", dependency: "$navigationFragment"],
+            [configuration: "implementation", dependency: "$lottie"],
+            [configuration: "implementation", dependency: "$viewBinding"]
     ]
 
     intentDependencies = appDependencies + [
@@ -30,6 +32,7 @@ ext {
             [configuration: "implementation", dependency: "$viewModel"],
             [configuration: "implementation", dependency: "$viewModelRuntime"],
             [configuration: "implementation", dependency: "$lifecycleXt"],
+            [configuration: "implementation", dependency: "$lifecycle"],
             [configuration: "implementation", dependency: "$liveData"]
     ]
 

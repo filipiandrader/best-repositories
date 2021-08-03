@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="BR.Fullscreen.Theme" parent="Theme.AppCompat.Dialog">
+        <item name="android:windowNoTitle">true</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowBackground">@android:color/white</item>
+    </style>
+
+    <style name="BR.Base.Button" parent="Widget.AppCompat.Button.Borderless.Colored">
+        <item name="android:foreground">@drawable/ripple_button_effect</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textAllCaps">false</item>
+        <item name="android:paddingStart">16dp</item>
+        <item name="android:paddingEnd">16dp</item>
+        <item name="cornerRadius">@dimen/input_corner_radius</item>
+        <item name="android:elevation">0dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:layout_marginStart">32dp</item>
+        <item name="android:layout_marginEnd">32dp</item>
+        <item name="android:enabled">false</item>
+    </style>
+
+    <style name="BR.Button.Primary" parent="BR.Base.Button">
+        <item name="android:background">@drawable/selector_primary_button</item>
+        <item name="android:textColor">@color/selector_text_primary_button</item>
+    </style>
+
+    <style name="BR.Button.Primary.Outlined" parent="BR.Base.Button">
+        <item name="android:background">@drawable/selector_primary_outlined_button</item>
+        <item name="android:textColor">@color/selector_text_primary_outlined_button</item>
+    </style>
+
+    <style name="Heading01Left">
+        <item name="android:textSize">32sp</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="Heading02Left">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="Heading03Left">
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:textColor">@color/colorPrimaryText</item>
+    </style>
+
+    <style name="Heading03Center" parent="Heading03Left">
+        <item name="android:gravity">center_horizontal</item>
+    </style>
+
+    <style name="Heading03Center.Secondary" parent="Heading03Center">
+        <item name="android:textColor">@color/colorSecondaryText</item>
+    </style>
+</resources>
