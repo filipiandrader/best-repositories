@@ -1,0 +1,43 @@
+ext {
+    // kotlin
+    kotlin                     = "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlinVersion"
+    coroutine                  = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutineVersion"
+
+    // retrofit
+    retrofit2                  = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    httpInterceptor            = "com.squareup.okhttp3:logging-interceptor:$httpInterceptorVersion"
+    okhttp                     = "com.squareup.okhttp3:okhttp:$okhttpVersion"
+    gsonConvertFactory         = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+
+    // room
+    room                       = "androidx.room:room-runtime:$roomVersion"
+    roomKtx                    = "androidx.room:room-ktx:$roomVersion"
+    roomCompiler               = "androidx.room:room-compiler:$roomVersion"
+
+    //gson
+    gson                       = "com.google.code.gson:gson:$gsonVersion"
+
+    //androidx
+    appCompat                  = "androidx.appcompat:appcompat:$appCompatVersion"
+    androidKtxCore             = "androidx.core:core-ktx:$androidKtxCoreVersion"
+    constraintLayout           = "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
+    material                   = "com.google.android.material:material:$materialVersion"
+    navigationUi               = "androidx.navigation:navigation-ui-ktx:$navigationVersion"
+    navigationFragment         = "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
+
+    //androidx lifecycle
+    viewModelRuntime           = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
+    viewModel                  = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
+    lifecycleXt                = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    liveData                   = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
+
+    // koin
+    koinScope                  = "org.koin:koin-androidx-scope:$koinVersion"
+    koinViewModel              = "org.koin:koin-androidx-viewmodel:$koinVersion"
+    koinFragment               = "org.koin:koin-androidx-fragment:$koinVersion"
+    koinAndroid                = "org.koin:koin-androidx-ext:$koinVersion"
+
+    // picasso
+    circleImageView            = "de.hdodenhof:circleimageview:$circleImageViewVersion"
+    picasso                    = "com.squareup.picasso:picasso:$picassoVersion"
+}

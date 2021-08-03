@@ -8,3 +8,10 @@ dependencyResolutionManagement {
 }
 rootProject.name = "Best Repositories"
 include ':app'
+include ':base_feature'
+include ':data'
+include ':data_remote'
+include ':di'
+include ':data_local'
+include ':domain'
+include ':intent'

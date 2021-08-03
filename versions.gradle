@@ -1,0 +1,41 @@
+ext {
+    androidProdApplicationId   = "com.bestrepositories"
+
+    // versions
+    androidCompileSdkVersion   = 30
+    androidMinSdkVersion       = 21
+    androidTargetSdkVersion    = 30
+    androidVersionCode         = 1
+    androidVersionName         = "1.0.0"
+
+    // kotlin
+    coroutineVersion           = "1.3.7"
+
+    // android
+    materialVersion            = '1.3.0-alpha02'
+    appCompatVersion           = "1.2.0"
+    androidKtxCoreVersion      = "1.3.0"
+    constraintLayoutVersion    = "2.0.0"
+    navigationVersion          = "2.2.2"
+
+    // androidx lifecycle
+    lifecycleVersion           = "2.2.0"
+
+    // koin
+    koinVersion                = "2.1.5"
+
+    //retrofit
+    retrofitVersion            = "2.9.0"
+    httpInterceptorVersion     = "4.9.0"
+    okhttpVersion              = "4.9.0"
+
+    //room
+    roomVersion                = "2.2.5"
+
+    //gson
+    gsonVersion                = "2.8.5"
+
+    // picasso
+    circleImageViewVersion     = "3.0.1"
+    picassoVersion             = "2.71828"
+}

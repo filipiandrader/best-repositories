@@ -1,0 +1,63 @@
+ext {
+    commonsDependencies = [
+            [configuration: "implementation", dependency: fileTree(dir: 'libs', include: ['*.jar'])],
+            [configuration: "implementation", dependency: "$kotlin"],
+            [configuration: "implementation", dependency: "$coroutine"],
+            [configuration: "implementation", dependency: "$koinScope"],
+            [configuration: "implementation", dependency: "$androidKtxCore"]
+    ]
+
+    appDependencies = commonsDependencies + testAppDependencies + [
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$viewModelRuntime"],
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$constraintLayout"],
+            [configuration: "implementation", dependency: "$material"],
+            [configuration: "implementation", dependency: "$circleImageView"],
+            [configuration: "implementation", dependency: "$picasso"],
+            [configuration: "implementation", dependency: "$navigationUi"],
+            [configuration: "implementation", dependency: "$navigationFragment"]
+    ]
+
+    intentDependencies = appDependencies + [
+            [configuration: "implementation", dependency: "$navigationFragment"],
+            [configuration: "implementation", dependency: "$navigationUi"]
+    ]
+
+    presentationDependencies = commonsDependencies + testPresentationDependencies + [
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$viewModel"],
+            [configuration: "implementation", dependency: "$viewModelRuntime"],
+            [configuration: "implementation", dependency: "$lifecycleXt"],
+            [configuration: "implementation", dependency: "$liveData"]
+    ]
+
+    domainDependencies = commonsDependencies + testDomainDependencies + [
+    ]
+
+    dataDependencies = commonsDependencies + testDataDependencies
+
+    dataLocalDependencies = dataDependencies + testDataLocalDependencies + [
+            [configuration: "implementation", dependency: "$gson"],
+            [configuration: "implementation", dependency: "$gsonConvertFactory"],
+            [configuration: "implementation", dependency: "$room"],
+            [configuration: "implementation", dependency: "$roomKtx"],
+            [configuration: "kapt", dependency: "$roomCompiler"]
+    ]
+
+    dataRemoteDependencies = dataDependencies + [
+            [configuration: "implementation", dependency: "$retrofit2"],
+            [configuration: "implementation", dependency: "$httpInterceptor"],
+            [configuration: "implementation", dependency: "$gsonConvertFactory"],
+            [configuration: "implementation", dependency: "$okhttp"]
+    ]
+
+    diDependencies = commonsDependencies + [
+            [configuration: "implementation", dependency: "$appCompat"],
+            [configuration: "implementation", dependency: "$viewModel"],
+            [configuration: "implementation", dependency: "$koinViewModel"],
+            [configuration: "implementation", dependency: "$retrofit2"],
+            [configuration: "implementation", dependency: "$httpInterceptor"]
+    ]
+}

@@ -1,0 +1,11 @@
+apply plugin: 'kotlin'
+
+dependencies {
+    dataDependencies.each { add(it.configuration, it.dependency, it.options) }
+    api project(':domain')
+}
+
+compileKotlin {
+    kotlinOptions.jvmTarget = "1.8"
+    kotlinOptions.freeCompilerArgs = ["-Xallow-result-return-type"]
+}
