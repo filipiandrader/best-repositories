@@ -5,6 +5,7 @@ ext {
 
     // retrofit
     retrofit2                  = "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    retrofitCoroutine          = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutineVersion"
     httpInterceptor            = "com.squareup.okhttp3:logging-interceptor:$httpInterceptorVersion"
     okhttp                     = "com.squareup.okhttp3:okhttp:$okhttpVersion"
     gsonConvertFactory         = "com.squareup.retrofit2:converter-gson:$retrofitVersion"

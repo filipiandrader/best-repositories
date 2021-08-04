@@ -51,6 +51,7 @@ ext {
 
     dataRemoteDependencies = dataDependencies + [
             [configuration: "implementation", dependency: "$retrofit2"],
+            [configuration: "implementation", dependency: "$retrofitCoroutine"],
             [configuration: "implementation", dependency: "$httpInterceptor"],
             [configuration: "implementation", dependency: "$gsonConvertFactory"],
             [configuration: "implementation", dependency: "$okhttp"]
