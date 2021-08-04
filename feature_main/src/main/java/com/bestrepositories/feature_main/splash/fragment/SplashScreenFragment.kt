@@ -24,6 +24,6 @@ class SplashScreenFragment : BaseFragment() {
     override fun setupView() {
         Handler(requireActivity().mainLooper).postDelayed({
             navigation.navigateToRepositories()
-        }, 3000)
+        }, 5000)
     }
 }

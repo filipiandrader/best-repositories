@@ -11,5 +11,6 @@ dependencies {
     implementation project(':data_remote')
     implementation project(':domain')
     implementation project(':feature_main')
+    implementation project(':intent')
     diDependencies.each { add(it.configuration, it.dependency, it.option) }
 }
