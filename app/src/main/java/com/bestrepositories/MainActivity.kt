@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import com.bestrepositories.databinding.ActivityMainBinding
+import com.bestrepositories.intent.utils.safeNavigateUp
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,5 +20,5 @@ class MainActivity : AppCompatActivity() {
         navController = findNavController(R.id.mainNavHostFragment)
     }
 
-    override fun onSupportNavigateUp() = navController.navigateUp()
+    override fun onSupportNavigateUp() = navController.safeNavigateUp()
 }

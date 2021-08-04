@@ -11,7 +11,7 @@ import com.bestrepositories.base_feature.customview.dialog.BRDialog
 import com.bestrepositories.base_feature.customview.loading.BRLoading
 import com.bestrepositories.base_feature.utils.extensions.hideKeyboard
 
-class BaseFragment : Fragment(), ViewStateListener {
+abstract class BaseFragment : Fragment(), ViewStateListener {
 
     private val brLoading = BRLoading()
     private var brDialog: BRDialog? = null

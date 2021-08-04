@@ -17,6 +17,14 @@ android {
         }
     }
 
+    sourceSets {
+        main {
+            java {
+                srcDirs += 'build/generated/source/navigation-args/debug'
+            }
+        }
+    }
+
     packagingOptions {
         exclude 'META-INF/atomicfu.kotlin_module'
         exclude 'META-INF/DEPENDENCIES'

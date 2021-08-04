@@ -6,7 +6,6 @@ apply from: "$rootProject.projectDir/android-common.gradle"
 dependencies {
     implementation project(':di')
     implementation project(':intent')
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 
     appDependencies.each { add(it.configuration, it.dependency, it.options) }
 }
