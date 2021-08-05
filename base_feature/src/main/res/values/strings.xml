@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <string name="br_title">Best Repositories</string>
+
     <string name="share_button_text">Compartilhar</string>
     <string name="close_app_confirmation_message">Tem certeza que deseja sair?</string>
     <string name="exit_button_text">Sair</string>

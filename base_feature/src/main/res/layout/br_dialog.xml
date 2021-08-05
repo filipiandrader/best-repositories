@@ -17,12 +17,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_warning_blue"
+        app:srcCompat="@drawable/ic_warning"
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/brDialogTitleTextView"
-        style="@style/Heading03Center"
+        style="@style/BR.Heading03.Center"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -37,7 +37,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/brDialogDescriptionTextView"
-        style="@style/Heading03Center.Secondary"
+        style="@style/BR.Heading03.Center.Secondary"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
