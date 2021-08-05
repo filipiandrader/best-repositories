@@ -22,7 +22,7 @@ class BaseApplication : Application() {
                             dataRemoteModule,
                             dataLocalModule
                         )
-            ).androidContext(applicationContext)
+            ).androidContext(this@BaseApplication)
         }
     }
 }

@@ -5,8 +5,10 @@ import com.bestrepositories.base_feature.mapper.RepositoryMapper
 import com.bestrepositories.base_feature.model.RepositoryBinding
 import com.bestrepositories.base_feature.utils.extensions.*
 import com.bestrepositories.domain.usecase.GetRepositories
-import org.koin.core.KoinComponent
+import org.koin.core.component.KoinApiExtension
+import org.koin.core.component.KoinComponent
 
+@KoinApiExtension
 class RepositoriesViewModel : ViewModel(), KoinComponent {
 
     private val getRepositories: GetRepositories by useCase()

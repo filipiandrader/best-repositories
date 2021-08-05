@@ -5,7 +5,6 @@ ext {
 
     // retrofit
     retrofit2                  = "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    retrofitCoroutine          = "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-adapter:$retrofitCoroutineVersion"
     httpInterceptor            = "com.squareup.okhttp3:logging-interceptor:$httpInterceptorVersion"
     okhttp                     = "com.squareup.okhttp3:okhttp:$okhttpVersion"
     gsonConvertFactory         = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
@@ -30,18 +29,16 @@ ext {
     //androidx lifecycle
     viewModelRuntime           = "androidx.lifecycle:lifecycle-runtime-ktx:$lifecycleVersion"
     viewModel                  = "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
-    lifecycleXt                = "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    lifecycleXt                = "androidx.lifecycle:lifecycle-extensions:$lifecycleXtVersion"
     liveData                   = "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
     lifecycle                  = "androidx.lifecycle:lifecycle-common-java8:$lifecycleVersion"
 
     // koin
-    koinScope                  = "org.koin:koin-androidx-scope:$koinVersion"
-    koinViewModel              = "org.koin:koin-androidx-viewmodel:$koinVersion"
-    koinFragment               = "org.koin:koin-androidx-fragment:$koinVersion"
-    koinAndroid                = "org.koin:koin-androidx-ext:$koinVersion"
+    koinCore                   = "io.insert-koin:koin-core:$koinVersion"
+    koinViewModel              = "io.insert-koin:koin-android-viewmodel:$koinVersion"
+    koinAndroid                = "io.insert-koin:koin-android:$koinVersion"
 
     // picasso
-    circleImageView            = "de.hdodenhof:circleimageview:$circleImageViewVersion"
     picasso                    = "com.squareup.picasso:picasso:$picassoVersion"
 
     // lottie animation

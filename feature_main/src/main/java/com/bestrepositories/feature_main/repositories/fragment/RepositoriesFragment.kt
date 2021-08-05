@@ -13,8 +13,10 @@ import com.bestrepositories.feature_main.R
 import com.bestrepositories.feature_main.databinding.FragmentRepositoriesBinding
 import com.bestrepositories.feature_main.repositories.adapter.RepositoriesAdapter
 import com.bestrepositories.feature_main.repositories.presentation.RepositoriesViewModel
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.android.viewmodel.ext.android.viewModel
+import org.koin.core.component.KoinApiExtension
 
+@KoinApiExtension
 class RepositoriesFragment : BaseFragment() {
 
     private val binding by viewInflateBinding(FragmentRepositoriesBinding::inflate)
