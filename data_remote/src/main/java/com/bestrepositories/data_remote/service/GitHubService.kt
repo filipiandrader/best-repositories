@@ -1,11 +1,14 @@
 package com.bestrepositories.data_remote.service
 
+import com.bestrepositories.data_remote.model.GenericResponse
+import com.bestrepositories.data_remote.model.RepositoryResponse
+import com.bestrepositories.data_remote.service.GitHubConstants.REPOSITORIES
 import retrofit2.http.GET
 
 interface GitHubService {
 
-    @GET(GitHubConstants.REPOSITORIES)
-    suspend fun getRepositories()
+    @GET(REPOSITORIES)
+    suspend fun getRepositories(): GenericResponse<List<RepositoryResponse>>
 }
 
 object GitHubConstants {

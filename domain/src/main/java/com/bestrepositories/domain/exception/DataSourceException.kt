@@ -1,4 +1,4 @@
-package com.bestrepositories.domain
+package com.bestrepositories.domain.exception
 
 open class DataSourceException(
     message: String,

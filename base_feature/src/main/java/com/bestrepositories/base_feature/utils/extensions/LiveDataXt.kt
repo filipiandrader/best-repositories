@@ -6,7 +6,6 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import com.bestrepositories.base_feature.core.*
 import com.bestrepositories.base_feature.core.ViewState.Status.*
-import com.bestrepositories.base_feature.utils.EventLiveData
 
 fun <T> MutableLiveData<ViewState<T>>.postNeutral() {
     value = ViewState(NEUTRAL, null, null)

@@ -1,4 +1,4 @@
-package com.bestrepositories.data_remote.utils
+package com.bestrepositories.data_remote.core
 
 import com.bestrepositories.data_remote.model.GenericResponse
 

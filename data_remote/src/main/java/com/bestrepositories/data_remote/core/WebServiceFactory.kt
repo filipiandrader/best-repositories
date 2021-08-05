@@ -1,4 +1,4 @@
-package com.bestrepositories.data_remote.utils
+package com.bestrepositories.data_remote.core
 
 import com.jakewharton.retrofit2.adapter.kotlin.coroutines.CoroutineCallAdapterFactory
 import okhttp3.OkHttpClient

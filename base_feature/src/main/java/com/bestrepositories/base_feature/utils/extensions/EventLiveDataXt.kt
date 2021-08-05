@@ -1,6 +1,6 @@
 @file:Suppress("UNCHECKED_CAST")
 
-package com.bestrepositories.base_feature.utils
+package com.bestrepositories.base_feature.utils.extensions
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
