@@ -2,5 +2,6 @@
 <resources>
     <declare-styleable name="BRToolbar">
         <attr name="toolbarTitle" format="string" />
+        <attr name="hasBackButton" format="boolean" />
     </declare-styleable>
 </resources>

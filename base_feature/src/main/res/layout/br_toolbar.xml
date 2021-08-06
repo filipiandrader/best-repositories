@@ -7,7 +7,7 @@
     android:background="@color/colorPrimaryDark">
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/toolbarNavigationIcon"
+        android:id="@+id/toolbarNavigationIconImageView"
         android:layout_width="32dp"
         android:layout_height="32dp"
         android:layout_marginStart="24dp"
@@ -28,6 +28,6 @@
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbarNavigationIcon"
+        app:layout_constraintTop_toBottomOf="@+id/toolbarNavigationIconImageView"
         tools:text="@string/br_title" />
 </androidx.constraintlayout.widget.ConstraintLayout>

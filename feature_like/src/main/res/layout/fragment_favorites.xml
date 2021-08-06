@@ -4,37 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".repositories.fragment.RepositoriesFragment">
+    tools:context=".fragment.FavoritesFragment">
 
     <com.bestrepositories.base_feature.customview.toolbar.BRToolbar
-        android:id="@+id/repositoriesBRToolbar"
+        android:id="@+id/favoritesBRToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:hasBackButton="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:toolbarTitle="@string/br_title" />
-
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/repositoriesFavoritesImageView"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="24dp"
-        app:layout_constraintBottom_toBottomOf="@+id/repositoriesBRToolbar"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/repositoriesBRToolbar"
-        app:srcCompat="@drawable/ic_heart_menu" />
+        app:toolbarTitle="@string/br_favorites_title" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/repositoriesRecyclerView"
+        android:id="@+id/favoritesRecyclerView"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/repositoriesBRToolbar"
+        app:layout_constraintTop_toBottomOf="@+id/favoritesBRToolbar"
         tools:itemCount="6"
         tools:listitem="@layout/item_repository" />
 </androidx.constraintlayout.widget.ConstraintLayout>

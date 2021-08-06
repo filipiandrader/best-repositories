@@ -102,6 +102,7 @@ gen-external-apklibs
 .idea/codeStyles/codeStyleConfig.xml
 .idea/navEditor.xml
 app/release/*
+app/build/*
 
 # Mongo Explorer plugin:
 .idea/mongoSettings.xml
