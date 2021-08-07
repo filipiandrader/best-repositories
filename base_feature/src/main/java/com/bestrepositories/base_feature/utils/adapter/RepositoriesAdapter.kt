@@ -8,10 +8,7 @@ import com.bestrepositories.base_feature.R
 import com.bestrepositories.base_feature.core.BaseAdapter
 import com.bestrepositories.base_feature.core.BaseViewHolder
 import com.bestrepositories.base_feature.model.RepositoryBinding
-import com.bestrepositories.base_feature.utils.extensions.getDrawable
-import com.bestrepositories.base_feature.utils.extensions.loadUrl
-import com.bestrepositories.base_feature.utils.extensions.setGone
-import com.bestrepositories.base_feature.utils.extensions.setVisible
+import com.bestrepositories.base_feature.utils.extensions.*
 
 class RepositoriesAdapter(
     val clickListener: (repository: RepositoryBinding) -> Unit,
@@ -37,7 +34,6 @@ class RepositoriesAdapter(
         private lateinit var itemRepositoryUsername: AppCompatTextView
         private lateinit var itemRepositoryStars: AppCompatTextView
         private lateinit var itemRepositoryForks: AppCompatTextView
-        private lateinit var itemRepositoryWatchers: AppCompatTextView
         private lateinit var itemRepositoryLike: AppCompatImageView
         private lateinit var itemRepositoryProgressBar: ProgressBar
 
@@ -47,7 +43,6 @@ class RepositoriesAdapter(
             itemRepositoryUsername = view.findViewById(R.id.itemRepositoryUsernameTextView)
             itemRepositoryStars = view.findViewById(R.id.itemRepositoryStarsTextView)
             itemRepositoryForks = view.findViewById(R.id.itemRepositoryForksTextView)
-            itemRepositoryWatchers = view.findViewById(R.id.itemRepositoryWatchersTextView)
             itemRepositoryLike = view.findViewById(R.id.itemRepositoryLikeImageView)
             itemRepositoryProgressBar = view.findViewById(R.id.itemRepositoryProgressBar)
 
@@ -59,11 +54,15 @@ class RepositoriesAdapter(
             itemRepositoryRepoName.text = item.name
             itemRepositoryUsername.text = item.owner.login
             itemRepositoryStars.text =
-                view.context.getString(R.string.repository_stars, item.stargazersCount)
+                view.context.getString(
+                    R.string.repository_stars,
+                    item.stargazersCount.getFormatedNumber()
+                ).setSpan(item.stargazersCount.getFormatedNumber())
             itemRepositoryForks.text =
-                view.context.getString(R.string.repository_forks, item.forksCount)
-            itemRepositoryWatchers.text =
-                view.context.getString(R.string.repository_watchers, item.watchersCount)
+                view.context.getString(
+                    R.string.repository_forks,
+                    item.forksCount.getFormatedNumber()
+                ).setSpan(item.forksCount.getFormatedNumber())
 
             itemRepositoryLike.setOnClickListener {
                 likeListener(item)

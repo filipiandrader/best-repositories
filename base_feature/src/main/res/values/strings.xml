@@ -9,7 +9,10 @@
     <string name="ok_button_text">OK</string>
     <string name="cancel_button_text">Cancelar</string>
 
-    <string name="repository_stars">stars: %1$d</string>
-    <string name="repository_forks">forks: %1$d</string>
-    <string name="repository_watchers">watchers: %1$d</string>
+    <string name="repository_stars">%1$s stars</string>
+    <string name="repository_forks">%1$s forks</string>
+    <string name="repository_watchers">%1$s watchers</string>
+    <string name="repository_language">language: %1$s</string>
+    <string name="repository_license">license: %1$s</string>
+    <string name="repository_see_on_github">see on github</string>
 </resources>

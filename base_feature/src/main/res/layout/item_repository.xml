@@ -44,7 +44,6 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:layout_marginEnd="16dp"
-            app:layout_constraintBottom_toBottomOf="@+id/itemRepositoryWatchersTextView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/itemRepositoryRepoNameTextView"
             app:srcCompat="@drawable/ic_heart_outline" />
@@ -76,10 +75,11 @@
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/itemRepositoryStarsTextView"
             style="@style/BR.Heading03.Left"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/itemRepositoryUsernameTextView"
+            android:drawableStart="@drawable/ic_star"
+            android:drawablePadding="8dp"
             app:layout_constraintStart_toStartOf="@+id/itemRepositoryUsernameTextView"
             app:layout_constraintTop_toBottomOf="@+id/itemRepositoryUsernameTextView"
             tools:text="@string/repository_stars" />
@@ -89,24 +89,13 @@
             style="@style/BR.Heading03.Left"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            app:layout_constraintEnd_toEndOf="@+id/itemRepositoryStarsTextView"
-            app:layout_constraintStart_toStartOf="@+id/itemRepositoryStarsTextView"
-            app:layout_constraintTop_toBottomOf="@+id/itemRepositoryStarsTextView"
-            tools:text="@string/repository_forks" />
-
-        <androidx.appcompat.widget.AppCompatTextView
-            android:id="@+id/itemRepositoryWatchersTextView"
-            style="@style/BR.Heading03.Left"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:layout_marginStart="8dp"
             android:layout_marginBottom="8dp"
+            android:drawableStart="@drawable/ic_source_fork"
+            android:drawablePadding="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/itemRepositoryForksTextView"
-            app:layout_constraintStart_toStartOf="@+id/itemRepositoryForksTextView"
-            app:layout_constraintTop_toBottomOf="@+id/itemRepositoryForksTextView"
-            app:layout_constraintVertical_bias="0"
-            tools:text="@string/repository_watchers" />
+            app:layout_constraintStart_toEndOf="@+id/itemRepositoryStarsTextView"
+            app:layout_constraintTop_toTopOf="@+id/itemRepositoryStarsTextView"
+            tools:text="@string/repository_forks" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
