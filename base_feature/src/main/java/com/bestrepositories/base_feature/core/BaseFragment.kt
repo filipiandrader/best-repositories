@@ -5,6 +5,7 @@ import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
+import com.bestrepositories.base_feature.R
 import com.bestrepositories.base_feature.customview.dialog.BRDialog
 import com.bestrepositories.base_feature.customview.loading.BRLoading
 import com.bestrepositories.base_feature.utils.extensions.hideKeyboard
@@ -26,8 +27,12 @@ abstract class BaseFragment : Fragment(), ViewStateListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        addObservers(viewLifecycleOwner)
         setupView()
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        addObservers(viewLifecycleOwner)
     }
 
     open fun addObservers(owner: LifecycleOwner) = Unit
@@ -49,5 +54,13 @@ abstract class BaseFragment : Fragment(), ViewStateListener {
     }
 
     override fun onStateError(error: Throwable) {
+        error.message?.let {
+            showDialog(
+                BRDialog.Params(
+                    description = it,
+                    positiveTextAction = getString(R.string.ok_button_text)
+                )
+            )
+        }
     }
 }

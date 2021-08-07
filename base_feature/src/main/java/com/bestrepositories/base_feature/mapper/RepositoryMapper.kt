@@ -20,7 +20,8 @@ object RepositoryMapper : PresentationMapper<RepositoryBinding, Repository> {
         watchersCount = presentation.watchersCount,
         language = presentation.language,
         forksCount = presentation.forksCount,
-        license = RepositoryLicenseMapper.toDomain(presentation.license)
+        license = RepositoryLicenseMapper.toDomain(presentation.license),
+        like = presentation.like
     )
 
     override fun fromDomain(domain: Repository) = RepositoryBinding(
@@ -34,7 +35,8 @@ object RepositoryMapper : PresentationMapper<RepositoryBinding, Repository> {
         watchersCount = domain.watchersCount,
         language = domain.language,
         forksCount = domain.forksCount,
-        license = RepositoryLicenseMapper.fromDomain(domain.license)
+        license = RepositoryLicenseMapper.fromDomain(domain.license),
+        like = domain.like
     )
 }
 

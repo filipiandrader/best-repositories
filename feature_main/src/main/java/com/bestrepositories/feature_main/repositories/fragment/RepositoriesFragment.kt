@@ -8,11 +8,11 @@ import androidx.lifecycle.LifecycleOwner
 import com.bestrepositories.base_feature.core.BaseFragment
 import com.bestrepositories.base_feature.customview.dialog.BRDialog
 import com.bestrepositories.base_feature.model.RepositoryBinding
+import com.bestrepositories.base_feature.utils.adapter.RepositoriesAdapter
 import com.bestrepositories.base_feature.utils.delegateproperties.navDirections
 import com.bestrepositories.base_feature.utils.delegateproperties.viewInflateBinding
 import com.bestrepositories.feature_main.R
 import com.bestrepositories.feature_main.databinding.FragmentRepositoriesBinding
-import com.bestrepositories.base_feature.utils.adapter.RepositoriesAdapter
 import com.bestrepositories.feature_main.repositories.navigation.RepositoriesNavigation
 import com.bestrepositories.feature_main.repositories.presentation.RepositoriesViewModel
 import org.koin.android.viewmodel.ext.android.viewModel
@@ -46,6 +46,10 @@ class RepositoriesFragment : BaseFragment() {
     override fun addObservers(owner: LifecycleOwner) {
         viewModel.getRepositoriesViewState.onPostValue(owner) {
             fillView(it)
+        }
+
+        viewModel.likeRepositoryViewState.onPostValue(owner) {
+            adapter.repositoryLiked = it
         }
     }
 

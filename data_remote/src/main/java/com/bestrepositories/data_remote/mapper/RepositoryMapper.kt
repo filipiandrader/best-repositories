@@ -20,7 +20,8 @@ object RepositoryMapper : DataRemoteMapper<RepositoryResponse, Repository> {
         watchersCount = data.watchersCount ?: 0,
         language = data.language ?: "",
         forksCount = data.forksCount ?: 0,
-        license = RepositoryLicenseMapper.toDomain(data.license ?: RepositoryLicenseResponse())
+        license = RepositoryLicenseMapper.toDomain(data.license ?: RepositoryLicenseResponse()),
+        like = false
     )
 }
 

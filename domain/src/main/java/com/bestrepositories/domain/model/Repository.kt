@@ -11,7 +11,8 @@ data class Repository(
     val watchersCount: Int,
     val language: String,
     val forksCount: Int,
-    val license: RepositoryLicense
+    val license: RepositoryLicense,
+    val like: Boolean
 )
 
 data class RepositoryOwner(

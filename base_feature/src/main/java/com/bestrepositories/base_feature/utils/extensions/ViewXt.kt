@@ -28,4 +28,4 @@ fun View.showOrHideView(condition: Boolean, visibility: Int = View.GONE) {
 
 fun getColor(context: Context, colorId: Int) = ContextCompat.getColor(context, colorId)
 
-fun getDrawable(context: Context, drawableId: Int) = ContextCompat.getDrawable(context, drawableId)
+fun View.getDrawable(drawableId: Int) = ContextCompat.getDrawable(context, drawableId)

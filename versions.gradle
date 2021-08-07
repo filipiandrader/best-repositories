@@ -21,7 +21,7 @@ ext {
 
     // androidx lifecycle
     lifecycleVersion           = "2.3.1"
-    lifecycleXtVersion        = "2.2.0"
+    lifecycleXtVersion         = "2.2.0"
 
     // koin
     koinVersion                = "2.2.3"

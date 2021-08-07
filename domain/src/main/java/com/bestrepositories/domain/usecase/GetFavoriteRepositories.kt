@@ -7,8 +7,10 @@ import kotlinx.coroutines.CoroutineScope
 import org.koin.core.component.KoinApiExtension
 
 @KoinApiExtension
-class GetRepositories(scope: CoroutineScope, private val repository: RepositoriesRepository) :
-    UseCase<List<Repository>, Unit>(scope) {
+class GetFavoriteRepositories(
+    scope: CoroutineScope,
+    private val repository: RepositoriesRepository
+) : UseCase<List<Repository>, Unit>(scope) {
 
-    override fun run(params: Unit?) = repository.getRepositories()
+    override fun run(params: Unit?) = repository.getFavoriteRepositories()
 }

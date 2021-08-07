@@ -13,7 +13,8 @@ data class RepositoryBinding(
     val watchersCount: Int,
     val language: String,
     val forksCount: Int,
-    val license: RepositoryLicenseBinding
+    val license: RepositoryLicenseBinding,
+    val like: Boolean
 ) : Serializable
 
 data class RepositoryOwnerBinding(
