@@ -18,15 +18,16 @@ class RepositoriesAdapter(
     val likeListener: (repository: RepositoryBinding) -> Unit
 ) : BaseAdapter<RepositoryBinding, RepositoriesAdapter.RepositoriesViewHolder>() {
 
-    var repositoryLiked: Boolean = false
-        set(value) {
-            field = value
-            notifyDataSetChanged()
-        }
+    private lateinit var viewHolder: RepositoriesViewHolder
 
     override val layoutId = R.layout.item_repository
 
-    override fun createViewHolderInstance(view: View) = RepositoriesViewHolder(view)
+    override fun createViewHolderInstance(view: View): RepositoriesViewHolder {
+        viewHolder = RepositoriesViewHolder(view)
+        return viewHolder
+    }
+
+    fun updateLike(like: Boolean) = viewHolder.updateLike(like)
 
     inner class RepositoriesViewHolder(private val view: View) :
         BaseViewHolder<RepositoryBinding>(view) {
@@ -34,6 +35,9 @@ class RepositoriesAdapter(
         private lateinit var itemRepositoryAvatar: AppCompatImageView
         private lateinit var itemRepositoryRepoName: AppCompatTextView
         private lateinit var itemRepositoryUsername: AppCompatTextView
+        private lateinit var itemRepositoryStars: AppCompatTextView
+        private lateinit var itemRepositoryForks: AppCompatTextView
+        private lateinit var itemRepositoryWatchers: AppCompatTextView
         private lateinit var itemRepositoryLike: AppCompatImageView
         private lateinit var itemRepositoryProgressBar: ProgressBar
 
@@ -41,6 +45,9 @@ class RepositoriesAdapter(
             itemRepositoryAvatar = view.findViewById(R.id.itemRepositoryAvatarImageView)
             itemRepositoryRepoName = view.findViewById(R.id.itemRepositoryRepoNameTextView)
             itemRepositoryUsername = view.findViewById(R.id.itemRepositoryUsernameTextView)
+            itemRepositoryStars = view.findViewById(R.id.itemRepositoryStarsTextView)
+            itemRepositoryForks = view.findViewById(R.id.itemRepositoryForksTextView)
+            itemRepositoryWatchers = view.findViewById(R.id.itemRepositoryWatchersTextView)
             itemRepositoryLike = view.findViewById(R.id.itemRepositoryLikeImageView)
             itemRepositoryProgressBar = view.findViewById(R.id.itemRepositoryProgressBar)
 
@@ -51,10 +58,25 @@ class RepositoriesAdapter(
 
             itemRepositoryRepoName.text = item.name
             itemRepositoryUsername.text = item.owner.login
+            itemRepositoryStars.text =
+                view.context.getString(R.string.repository_stars, item.stargazersCount)
+            itemRepositoryForks.text =
+                view.context.getString(R.string.repository_forks, item.forksCount)
+            itemRepositoryWatchers.text =
+                view.context.getString(R.string.repository_watchers, item.watchersCount)
 
-            itemRepositoryLike.setOnClickListener { likeListener(item) }
+            itemRepositoryLike.setOnClickListener {
+                likeListener(item)
+                updateLike(!item.like)
+            }
 
-            when (item.like) {
+            updateLike(item.like)
+
+            itemView.setOnClickListener { clickListener(item) }
+        }
+
+        fun updateLike(like: Boolean) {
+            when (like) {
                 true -> itemRepositoryLike.setImageDrawable(
                     view.getDrawable(R.drawable.ic_heart)
                 )
@@ -62,8 +84,6 @@ class RepositoriesAdapter(
                     view.getDrawable(R.drawable.ic_heart_outline)
                 )
             }
-
-            itemView.setOnClickListener { clickListener(item) }
         }
     }
 }

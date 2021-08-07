@@ -77,4 +77,8 @@
     <style name="BR.Heading03.Center.Secondary" parent="BR.Heading03.Center">
         <item name="android:textColor">@color/colorSecondaryText</item>
     </style>
+
+    <style name="BR.Heading04.Left" parent="BR.Text.Base">
+        <item name="android:textSize">16sp</item>
+    </style>
 </resources>

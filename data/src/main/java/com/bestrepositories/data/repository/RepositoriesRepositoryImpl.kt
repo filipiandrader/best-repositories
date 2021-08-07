@@ -13,7 +13,9 @@ class RepositoriesRepositoryImpl(
     private val localDataSource: RepositoriesLocalDataSource
 ) : RepositoriesRepository {
 
-    override fun getRepositories() = dataSource.getRepositories()
+    override fun getRepositories() = flow {
+        emit(syncWithLocalInfo(dataSource.getRepositories()))
+    }
 
     override fun getFavoriteRepositories() = flow {
         emit(localDataSource.getFavoriteRepositories())

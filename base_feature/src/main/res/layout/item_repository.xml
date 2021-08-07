@@ -1,80 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    android:elevation="8dp"
+    app:cardCornerRadius="8dp">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/itemRepositoryAvatarImageView"
-        android:layout_width="64dp"
-        android:layout_height="64dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
-        android:layout_marginBottom="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/square" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <ProgressBar
-        android:id="@+id/itemRepositoryProgressBar"
-        style="?android:attr/progressBarStyle"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/itemRepositoryAvatarImageView"
-        app:layout_constraintEnd_toEndOf="@+id/itemRepositoryAvatarImageView"
-        app:layout_constraintStart_toStartOf="@+id/itemRepositoryAvatarImageView"
-        app:layout_constraintTop_toTopOf="@+id/itemRepositoryAvatarImageView" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/itemRepositoryAvatarImageView"
+            android:layout_width="64dp"
+            android:layout_height="64dp"
+            android:layout_marginStart="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/square" />
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/itemRepositoryLikeImageView"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toBottomOf="@+id/itemRepositoryUsernameTextView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/itemRepositoryRepoNameTextView"
-        app:srcCompat="@drawable/ic_heart_outline" />
+        <ProgressBar
+            android:id="@+id/itemRepositoryProgressBar"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="8dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="@+id/itemRepositoryAvatarImageView"
+            app:layout_constraintEnd_toEndOf="@+id/itemRepositoryAvatarImageView"
+            app:layout_constraintStart_toStartOf="@+id/itemRepositoryAvatarImageView"
+            app:layout_constraintTop_toTopOf="@+id/itemRepositoryAvatarImageView" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/itemRepositoryRepoNameTextView"
-        style="@style/BR.Heading02.Left.Ellipsized"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        app:layout_constraintEnd_toStartOf="@+id/itemRepositoryLikeImageView"
-        app:layout_constraintStart_toEndOf="@+id/itemRepositoryAvatarImageView"
-        app:layout_constraintTop_toTopOf="@+id/itemRepositoryAvatarImageView"
-        tools:text="okhttp/square" />
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/itemRepositoryLikeImageView"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintBottom_toBottomOf="@+id/itemRepositoryWatchersTextView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/itemRepositoryRepoNameTextView"
+            app:srcCompat="@drawable/ic_heart_outline" />
 
-    <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/itemRepositoryUsernameTextView"
-        style="@style/BR.Heading03.Left"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintEnd_toEndOf="@+id/itemRepositoryRepoNameTextView"
-        app:layout_constraintStart_toStartOf="@+id/itemRepositoryRepoNameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/itemRepositoryRepoNameTextView"
-        tools:text="square" />
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemRepositoryRepoNameTextView"
+            style="@style/BR.Heading02.Left.Ellipsized"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/itemRepositoryLikeImageView"
+            app:layout_constraintStart_toEndOf="@+id/itemRepositoryAvatarImageView"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="okhttp/square" />
 
-    <View
-        android:id="@+id/itemRepositoryDividerView"
-        style="@style/Divider"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="12dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/itemRepositoryUsernameTextView"
-        app:layout_constraintTop_toBottomOf="@+id/itemRepositoryUsernameTextView" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemRepositoryUsernameTextView"
+            style="@style/BR.Heading03.Left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/itemRepositoryRepoNameTextView"
+            app:layout_constraintStart_toStartOf="@+id/itemRepositoryRepoNameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/itemRepositoryRepoNameTextView"
+            tools:text="square" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemRepositoryStarsTextView"
+            style="@style/BR.Heading03.Left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/itemRepositoryUsernameTextView"
+            app:layout_constraintStart_toStartOf="@+id/itemRepositoryUsernameTextView"
+            app:layout_constraintTop_toBottomOf="@+id/itemRepositoryUsernameTextView"
+            tools:text="@string/repository_stars" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemRepositoryForksTextView"
+            style="@style/BR.Heading03.Left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintEnd_toEndOf="@+id/itemRepositoryStarsTextView"
+            app:layout_constraintStart_toStartOf="@+id/itemRepositoryStarsTextView"
+            app:layout_constraintTop_toBottomOf="@+id/itemRepositoryStarsTextView"
+            tools:text="@string/repository_forks" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/itemRepositoryWatchersTextView"
+            style="@style/BR.Heading03.Left"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/itemRepositoryForksTextView"
+            app:layout_constraintStart_toStartOf="@+id/itemRepositoryForksTextView"
+            app:layout_constraintTop_toBottomOf="@+id/itemRepositoryForksTextView"
+            app:layout_constraintVertical_bias="0"
+            tools:text="@string/repository_watchers" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

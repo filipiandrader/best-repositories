@@ -49,7 +49,7 @@ class RepositoriesFragment : BaseFragment() {
         }
 
         viewModel.likeRepositoryViewState.onPostValue(owner) {
-            adapter.repositoryLiked = it
+            adapter.updateLike(it)
         }
     }
 
