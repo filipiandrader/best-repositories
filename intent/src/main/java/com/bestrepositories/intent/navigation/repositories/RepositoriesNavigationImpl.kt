@@ -12,5 +12,7 @@ class RepositoriesNavigationImpl(private val fragment: Fragment) : RepositoriesN
         RepositoriesFragmentDirections.actionRepositoriesFragmentToFavoritesNavigation()
     )
 
-    override fun navigateToDetail(repository: RepositoryBinding) = Unit
+    override fun navigateToDetail(repository: RepositoryBinding) = fragment.navigate(
+        RepositoriesFragmentDirections.actionRepositoriesFragmentToDetailNavigation(repository)
+    )
 }

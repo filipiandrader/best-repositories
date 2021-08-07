@@ -9,5 +9,21 @@
         android:id="@+id/favoritesFragment"
         android:name="com.bestrepositories.feature_like.fragment.FavoritesFragment"
         android:label="@string/fragment_no_title"
-        tools:layout="@layout/fragment_favorites" />
+        tools:layout="@layout/fragment_favorites">
+
+        <action
+            android:id="@+id/action_favoritesFragment_to_detail_navigation"
+            app:destination="@id/detail_navigation"
+            app:enterAnim="@anim/nav_slide_enter_anim"
+            app:exitAnim="@anim/nav_slide_exit_anim"
+            app:popEnterAnim="@anim/nav_slide_pop_enter_anim"
+            app:popExitAnim="@anim/nav_slide_pop_exit_anim" >
+
+            <argument
+                android:name="repository"
+                app:argType="com.bestrepositories.base_feature.model.RepositoryBinding" />
+        </action>
+    </fragment>
+
+    <include app:graph="@navigation/detail_navigation" />
 </navigation>

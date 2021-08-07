@@ -20,12 +20,22 @@ class BRToolbar @JvmOverloads constructor(
     private val toolbarTitle: AppCompatTextView
     private val toolbarNavigationIcon: AppCompatImageView
 
+    var title: String = ""
+    set(value) {
+        field = value
+        setupToolbarTitle()
+    }
+
     init {
         LayoutInflater.from(context).inflate(R.layout.br_toolbar, this, true).run {
             toolbarTitle = findViewById(R.id.toolbarTitleTextView)
             toolbarNavigationIcon = findViewById(R.id.toolbarNavigationIconImageView)
         }
         setupStyleable()
+    }
+
+    private fun setupToolbarTitle() {
+        toolbarTitle.text = title
     }
 
     private fun setupStyleable() {
