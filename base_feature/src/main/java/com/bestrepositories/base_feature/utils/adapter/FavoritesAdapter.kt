@@ -10,10 +10,10 @@ import com.bestrepositories.base_feature.core.BaseViewHolder
 import com.bestrepositories.base_feature.model.RepositoryBinding
 import com.bestrepositories.base_feature.utils.extensions.*
 
-class RepositoriesAdapter(
+class FavoritesAdapter(
     val clickListener: (repository: RepositoryBinding) -> Unit,
     val likeListener: (repository: RepositoryBinding) -> Unit
-) : BaseAdapter<RepositoryBinding, RepositoriesAdapter.RepositoriesViewHolder>() {
+) : BaseAdapter<RepositoryBinding, FavoritesAdapter.RepositoriesViewHolder>() {
 
     private lateinit var viewHolder: RepositoriesViewHolder
 
@@ -65,6 +65,7 @@ class RepositoriesAdapter(
             itemRepositoryLike.setOnClickListener {
                 likeListener(item)
                 updateLike(!item.like)
+                notifyItemRemoved(adapterPosition)
             }
 
             updateLike(item.like)

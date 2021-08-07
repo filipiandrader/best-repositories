@@ -13,7 +13,7 @@ abstract class RepositoryDao {
     abstract fun deleteRepository(repository: RepositoryLocal)
 
     @Transaction
-    @Query("SELECT * FROM repository")
+    @Query("SELECT * FROM repository ORDER BY stargazersCount DESC")
     abstract fun getFavoriteRepositories(): Array<RepositoryLocal>
 
     @Query("SELECT * FROM repository WHERE id = :id")

@@ -47,10 +47,6 @@ class RepositoriesFragment : BaseFragment() {
         viewModel.getRepositoriesViewState.onPostValue(owner) {
             fillView(it)
         }
-
-        viewModel.likeRepositoryViewState.onPostValue(owner) {
-            adapter.updateLike(it)
-        }
     }
 
     private fun fillView(repositories: List<RepositoryBinding>) {

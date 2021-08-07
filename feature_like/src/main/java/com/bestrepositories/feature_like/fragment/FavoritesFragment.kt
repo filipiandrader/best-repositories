@@ -7,7 +7,7 @@ import androidx.activity.addCallback
 import androidx.lifecycle.LifecycleOwner
 import com.bestrepositories.base_feature.core.BaseFragment
 import com.bestrepositories.base_feature.model.RepositoryBinding
-import com.bestrepositories.base_feature.utils.adapter.RepositoriesAdapter
+import com.bestrepositories.base_feature.utils.adapter.FavoritesAdapter
 import com.bestrepositories.base_feature.utils.delegateproperties.navDirections
 import com.bestrepositories.base_feature.utils.delegateproperties.viewInflateBinding
 import com.bestrepositories.feature_like.databinding.FragmentFavoritesBinding
@@ -23,7 +23,7 @@ class FavoritesFragment : BaseFragment() {
     private val navigation: FavoritesNavigation by navDirections()
     private val viewModel by viewModel<FavoritesViewModel>()
 
-    private lateinit var adapter: RepositoriesAdapter
+    private lateinit var adapter: FavoritesAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -38,12 +38,16 @@ class FavoritesFragment : BaseFragment() {
         viewModel.getFavoriteRepositoriesViewState.onPostValue(owner) {
             fillView(it)
         }
+
+        viewModel.likeRepositoryViewState.onPostValue(owner) {
+            fillView(it)
+        }
     }
 
     private fun fillView(repositories: List<RepositoryBinding>) {
-        adapter = RepositoriesAdapter(
+        adapter = FavoritesAdapter(
             clickListener = { navigation.navigateToDetail(it) },
-            likeListener = { }
+            likeListener = { viewModel.likeRepository(it) }
         )
         adapter.items = repositories.toMutableList()
         binding.favoritesRecyclerView.adapter = adapter
