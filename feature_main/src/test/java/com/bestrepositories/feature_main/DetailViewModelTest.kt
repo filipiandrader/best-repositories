@@ -24,6 +24,7 @@ import kotlin.test.assertTrue
 
 @KoinApiExtension
 class DetailViewModelTest {
+    
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 

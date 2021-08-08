@@ -1,4 +1,4 @@
-package com.bestrepositories.feature_main
+package com.bestrepositories.feature_like
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.bestrepositories.base_feature.mapper.RepositoryMapper
@@ -7,10 +7,10 @@ import com.bestrepositories.base_feature.utils.extensions.isNeutral
 import com.bestrepositories.base_feature.utils.extensions.isSuccess
 import com.bestrepositories.domain.model.Repository
 import com.bestrepositories.domain.usecase.FilterRepositories
-import com.bestrepositories.domain.usecase.GetRepositories
+import com.bestrepositories.domain.usecase.GetFavoriteRepositories
 import com.bestrepositories.domain.usecase.LikeRepository
-import com.bestrepositories.feature_main.RepositoryFactory.DUMMY_REPOSITORY
-import com.bestrepositories.feature_main.repositories.presentation.RepositoriesViewModel
+import com.bestrepositories.feature_like.FavoritesFactory.DUMMY_REPOSITORY
+import com.bestrepositories.feature_like.presentation.FavoritesViewModel
 import io.mockk.every
 import io.mockk.invoke
 import io.mockk.mockk
@@ -26,19 +26,19 @@ import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
 @KoinApiExtension
-class RepositoriesViewModelTest {
+class FavoritesViewModelTest {
 
     @get:Rule
     var instantTaskExecutorRule = InstantTaskExecutorRule()
 
-    private lateinit var viewModel: RepositoriesViewModel
+    private lateinit var viewModel: FavoritesViewModel
 
-    private val getRepositories: GetRepositories = mockk()
+    private val getFavoriteRepositories: GetFavoriteRepositories = mockk()
     private val likeRepository: LikeRepository = mockk()
     private val filterRepositories: FilterRepositories = mockk()
 
     private val testModule = module {
-        single { getRepositories }
+        single { getFavoriteRepositories }
         single { likeRepository }
         single { filterRepositories }
     }
@@ -46,7 +46,7 @@ class RepositoriesViewModelTest {
     @Before
     fun setup() {
         startKoin { modules(testModule) }
-        viewModel = RepositoriesViewModel()
+        viewModel = FavoritesViewModel()
     }
 
     @After
@@ -57,7 +57,7 @@ class RepositoriesViewModelTest {
     @Test
     fun `cleanValues WHEN called MUST postNeutral`() {
         viewModel.cleanValues()
-        assertTrue(viewModel.getRepositoriesViewState.isNeutral())
+        assertTrue(viewModel.getFavoriteRepositoriesViewState.isNeutral())
         assertTrue(viewModel.likeRepositoryViewState.isNeutral())
         assertTrue(viewModel.filterRepositoriesViewState.isNeutral())
     }
@@ -65,21 +65,21 @@ class RepositoriesViewModelTest {
     @Test
     fun `getRepositories WHEN called MUST return success`() {
         stubGetRepositoriesSuccess()
-        viewModel.getRepositories()
+        viewModel.getFavoriteRepositories()
         assertEquals(
             RepositoryMapper.fromDomain(listOf(DUMMY_REPOSITORY)),
-            viewModel.getRepositoriesViewState.value?.data
+            viewModel.getFavoriteRepositoriesViewState.value?.data
         )
-        assertTrue(viewModel.getRepositoriesViewState.isSuccess())
+        assertTrue(viewModel.getFavoriteRepositoriesViewState.isSuccess())
     }
 
     @Test
     fun `getRepositories WHEN called MUST return error`() {
         val dummyError = Throwable()
         stubGetRepositoriesError(dummyError)
-        viewModel.getRepositories()
-        assertEquals(dummyError, viewModel.getRepositoriesViewState.value?.error)
-        assertTrue(viewModel.getRepositoriesViewState.isError())
+        viewModel.getFavoriteRepositories()
+        assertEquals(dummyError, viewModel.getFavoriteRepositoriesViewState.value?.error)
+        assertTrue(viewModel.getFavoriteRepositoriesViewState.isError())
     }
 
     @Test
@@ -87,7 +87,7 @@ class RepositoriesViewModelTest {
         stubLikeRepositorySuccess()
         val repository = RepositoryMapper.fromDomain(DUMMY_REPOSITORY)
         viewModel.likeRepository(repository)
-        assertEquals(true, viewModel.likeRepositoryViewState.value?.data)
+        assertEquals(listOf(repository), viewModel.likeRepositoryViewState.value?.data)
         assertTrue(viewModel.likeRepositoryViewState.isSuccess())
     }
 
@@ -122,7 +122,7 @@ class RepositoriesViewModelTest {
 
     private fun stubGetRepositoriesSuccess() {
         every {
-            getRepositories.invoke(
+            getFavoriteRepositories.invoke(
                 onSuccess = captureLambda(),
                 onError = any()
             )
@@ -131,7 +131,7 @@ class RepositoriesViewModelTest {
 
     private fun stubGetRepositoriesError(dummyError: Throwable) {
         every {
-            getRepositories.invoke(
+            getFavoriteRepositories.invoke(
                 onSuccess = any(),
                 onError = captureLambda()
             )
