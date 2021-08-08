@@ -6,6 +6,7 @@ apply from: "$rootProject.projectDir/android-common.gradle"
 dependencies {
     implementation project(':base_feature')
     appDependencies.each { add(it.configuration, it.dependency, it.options) }
+    presentationDependencies.each { add(it.configuration, it.dependency, it.option) }
 }
 
 android {

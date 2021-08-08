@@ -22,6 +22,7 @@ class RepositoriesViewModel : ViewModel(), KoinComponent {
     private val _filterRepositoriesViewState by viewState<List<RepositoryBinding>>()
 
     val getRepositoriesViewState = _getRepositoriesViewState.asLiveData()
+    val likeRepositoryViewState = _likeRepositoryViewState.asLiveData()
     val filterRepositoriesViewState = _filterRepositoriesViewState.asLiveData()
 
     private val repositories = mutableListOf<RepositoryBinding>()

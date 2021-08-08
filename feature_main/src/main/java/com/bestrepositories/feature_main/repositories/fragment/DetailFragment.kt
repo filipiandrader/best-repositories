@@ -85,4 +85,9 @@ class DetailFragment : BaseFragment() {
             navigation.navigateToPrevious()
         }
     }
+
+    override fun onStop() {
+        super.onStop()
+        viewModel.cleanValues()
+    }
 }
