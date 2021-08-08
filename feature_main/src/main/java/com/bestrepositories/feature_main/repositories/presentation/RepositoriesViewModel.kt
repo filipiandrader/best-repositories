@@ -57,5 +57,6 @@ class RepositoriesViewModel : ViewModel(), KoinComponent {
     fun cleanValues() {
         _getRepositoriesViewState.postNeutral()
         _likeRepositoryViewState.postNeutral()
+        _filterRepositoriesViewState.postNeutral()
     }
 }

@@ -32,6 +32,8 @@ class FavoritesFragment : BaseFragment() {
     override fun setupView() {
         viewModel.getFavoriteRepositories()
         setupBackPressed()
+
+        binding.favoritesBRToolbar.doOnSubmit(this) { viewModel.filterRepositories(it) }
     }
 
     override fun addObservers(owner: LifecycleOwner) {
@@ -40,6 +42,10 @@ class FavoritesFragment : BaseFragment() {
         }
 
         viewModel.likeRepositoryViewState.onPostValue(owner) {
+            fillView(it)
+        }
+
+        viewModel.filterRepositoriesViewState.onPostValue(owner) {
             fillView(it)
         }
     }
@@ -55,7 +61,6 @@ class FavoritesFragment : BaseFragment() {
 
     private fun setupBackPressed() {
         binding.favoritesBRToolbar.setBackAction { navigation.navigateToPrevious() }
-
         requireActivity().onBackPressedDispatcher.addCallback(this) {
             navigation.navigateToPrevious()
         }

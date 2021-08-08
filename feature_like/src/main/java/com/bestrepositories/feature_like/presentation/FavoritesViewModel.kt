@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import com.bestrepositories.base_feature.mapper.RepositoryMapper
 import com.bestrepositories.base_feature.model.RepositoryBinding
 import com.bestrepositories.base_feature.utils.extensions.*
+import com.bestrepositories.domain.usecase.FilterRepositories
 import com.bestrepositories.domain.usecase.GetFavoriteRepositories
 import com.bestrepositories.domain.usecase.LikeRepository
 import org.koin.core.component.KoinApiExtension
@@ -14,12 +15,15 @@ class FavoritesViewModel : ViewModel(), KoinComponent {
 
     private val getFavoriteRepositories: GetFavoriteRepositories by useCase()
     private val likeRepository: LikeRepository by useCase()
+    private val filterRepositories: FilterRepositories by useCase()
 
     private val _getFavoriteRepositoriesViewState by viewState<List<RepositoryBinding>>()
     private val _likeRepositoryViewState by viewState<List<RepositoryBinding>>()
+    private val _filterRepositoriesViewState by viewState<List<RepositoryBinding>>()
 
     val getFavoriteRepositoriesViewState = _getFavoriteRepositoriesViewState.asLiveData()
     val likeRepositoryViewState = _likeRepositoryViewState.asLiveData()
+    val filterRepositoriesViewState = _filterRepositoriesViewState.asLiveData()
 
     private val repositories = mutableListOf<RepositoryBinding>()
 
@@ -49,8 +53,17 @@ class FavoritesViewModel : ViewModel(), KoinComponent {
         )
     }
 
+    fun filterRepositories(term: String) {
+        filterRepositories(
+            params = FilterRepositories.Params(RepositoryMapper.toDomain(repositories), term),
+            onSuccess = { _filterRepositoriesViewState.postSuccess(RepositoryMapper.fromDomain(it)) },
+            onError = { _filterRepositoriesViewState.postError(it) }
+        )
+    }
+
     fun cleanValues() {
         _getFavoriteRepositoriesViewState.postNeutral()
         _likeRepositoryViewState.postNeutral()
+        _filterRepositoriesViewState.postNeutral()
     }
 }

@@ -36,13 +36,7 @@ class RepositoriesFragment : BaseFragment() {
         setupOnBackPressedCallback()
 
         binding.repositoriesFavoritesImageView.setOnClickListener { navigation.navigateToFavorite() }
-
         binding.repositoriesBRToolbar.doOnSubmit(this) { viewModel.filterRepositories(it) }
-
-        adapter = RepositoriesAdapter(
-            clickListener = { navigation.navigateToDetail(it) },
-            likeListener = { viewModel.likeRepository(it) }
-        )
     }
 
     override fun addObservers(owner: LifecycleOwner) {
@@ -56,6 +50,10 @@ class RepositoriesFragment : BaseFragment() {
     }
 
     private fun fillView(repositories: List<RepositoryBinding>) {
+        adapter = RepositoriesAdapter(
+            clickListener = { navigation.navigateToDetail(it) },
+            likeListener = { viewModel.likeRepository(it) }
+        )
         adapter.items = repositories.toMutableList()
         binding.repositoriesRecyclerView.adapter = adapter
     }
