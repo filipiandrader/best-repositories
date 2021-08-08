@@ -11,6 +11,8 @@ import com.bestrepositories.base_feature.model.RepositoryBinding
 import com.bestrepositories.base_feature.utils.adapter.RepositoriesAdapter
 import com.bestrepositories.base_feature.utils.delegateproperties.navDirections
 import com.bestrepositories.base_feature.utils.delegateproperties.viewInflateBinding
+import com.bestrepositories.base_feature.utils.extensions.setGone
+import com.bestrepositories.base_feature.utils.extensions.setVisible
 import com.bestrepositories.feature_main.R
 import com.bestrepositories.feature_main.databinding.FragmentRepositoriesBinding
 import com.bestrepositories.feature_main.repositories.navigation.RepositoriesNavigation
@@ -40,16 +42,35 @@ class RepositoriesFragment : BaseFragment() {
     }
 
     override fun addObservers(owner: LifecycleOwner) {
-        viewModel.getRepositoriesViewState.onPostValue(owner) {
-            fillView(it)
-        }
+        viewModel.getRepositoriesViewState.onPostValue(owner,
+            onLoading = { onStateLoading(true) },
+            onSuccess = { fillView(it) }
+        )
 
         viewModel.filterRepositoriesViewState.onPostValue(owner) {
             fillView(it)
         }
     }
 
+    private fun onStateLoading(loading: Boolean) {
+        when (loading) {
+            true -> {
+                binding.apply {
+                    repositoriesBRLoading.setVisible()
+                    repositoriesGroup.setGone()
+                }
+            }
+            false -> {
+                binding.apply {
+                    repositoriesBRLoading.setGone()
+                    repositoriesGroup.setVisible()
+                }
+            }
+        }
+    }
+
     private fun fillView(repositories: List<RepositoryBinding>) {
+        onStateLoading(false)
         adapter = RepositoriesAdapter(
             clickListener = { navigation.navigateToDetail(it) },
             likeListener = { viewModel.likeRepository(it) }

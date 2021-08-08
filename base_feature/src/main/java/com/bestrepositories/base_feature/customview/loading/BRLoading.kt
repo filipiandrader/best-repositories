@@ -1,29 +1,19 @@
 package com.bestrepositories.base_feature.customview.loading
 
-import android.os.Bundle
+import android.content.Context
+import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.ViewGroup
-import com.bestrepositories.base_feature.customview.base.BaseFullScreenDialog
-import com.bestrepositories.base_feature.databinding.BrLoadingBinding
-import com.bestrepositories.base_feature.utils.delegateproperties.viewInflateBinding
+import android.widget.LinearLayout
+import com.bestrepositories.base_feature.R
 
-class BRLoading : BaseFullScreenDialog() {
+class BRLoading @JvmOverloads constructor(
+    context: Context,
+    attrs: AttributeSet? = null,
+    defStyle: Int = 0,
+    defStyleRes: Int = 0
+) : LinearLayout(context, attrs, defStyle, defStyleRes) {
 
-    private val binding by viewInflateBinding(BrLoadingBinding::inflate)
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
-    ) = binding.root
-
-    override fun onStart() {
-        super.onStart()
-        dialog?.window?.run {
-            dialog?.setCancelable(false)
-            setBackgroundDrawableResource(android.R.color.transparent)
-            attributes = attributes.run {
-                dimAmount = 0f
-                this
-            }
-        }
+    init {
+        LayoutInflater.from(context).inflate(R.layout.br_loading, this, true)
     }
 }

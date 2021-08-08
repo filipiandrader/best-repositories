@@ -7,12 +7,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.LifecycleOwner
 import com.bestrepositories.base_feature.R
 import com.bestrepositories.base_feature.customview.dialog.BRDialog
-import com.bestrepositories.base_feature.customview.loading.BRLoading
 import com.bestrepositories.base_feature.utils.extensions.hideKeyboard
 
 abstract class BaseFragment : Fragment(), ViewStateListener {
 
-    private val brLoading = BRLoading()
     private var brDialog: BRDialog? = null
 
     override fun onStop() {
@@ -42,15 +40,6 @@ abstract class BaseFragment : Fragment(), ViewStateListener {
     fun showDialog(brDialogParams: BRDialog.Params) {
         brDialog?.dismiss()
         brDialog = BRDialog(brDialogParams).apply { show(this@BaseFragment) }
-    }
-
-    override fun onStateLoading() {
-        hideLoading()
-//        childFragmentManager.let { brLoading.show(requireActivity().supportFragmentManager) }
-    }
-
-    override fun hideLoading() {
-//        brLoading.dismissAllowingStateLoss()
     }
 
     override fun onStateError(error: Throwable) {

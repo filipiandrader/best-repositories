@@ -3,7 +3,6 @@ package com.bestrepositories.base_feature.customview.base
 import android.view.ViewGroup
 import android.view.Window
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
@@ -16,10 +15,6 @@ open class BaseDialogFragment : DialogFragment(), LifecycleObserver {
     private var isLoading = false
     private var lifecycleOwner: LifecycleOwner? = null
 
-    fun show(manager: FragmentManager) {
-        show(manager, this::class.java.simpleName)
-    }
-
     fun show(fragmentContainer: BaseFragment) {
         this.lifecycleOwner = fragmentContainer.apply {
             lifecycle.addObserver(this@BaseDialogFragment)
@@ -27,13 +22,6 @@ open class BaseDialogFragment : DialogFragment(), LifecycleObserver {
                 fragmentContainer.childFragmentManager,
                 this@BaseDialogFragment::class.java.simpleName
             )
-        }
-    }
-
-    fun show(container: FragmentActivity) {
-        this.lifecycleOwner = container.apply {
-            lifecycle.addObserver(this@BaseDialogFragment)
-            show(container.supportFragmentManager, this@BaseDialogFragment::class.java.simpleName)
         }
     }
 
