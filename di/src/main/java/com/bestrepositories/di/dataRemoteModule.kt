@@ -1,15 +1,17 @@
 package com.bestrepositories.di
 
 import com.bestrepositories.data.datasource.RepositoriesRemoteDataSource
-import com.bestrepositories.data_remote.datasource.RepositoriesRemoteDataSourceImpl
-import com.bestrepositories.data_remote.service.GitHubService
 import com.bestrepositories.data_remote.core.RequestWrapper
 import com.bestrepositories.data_remote.core.RequestWrapperImpl
 import com.bestrepositories.data_remote.core.WebServiceFactory
+import com.bestrepositories.data_remote.datasource.RepositoriesRemoteDataSourceImpl
+import com.bestrepositories.data_remote.service.GitHubService
 import com.bestrepositories.data_remote.utils.constants.SEARCH_BASE_URL
+import org.koin.core.component.KoinApiExtension
 import org.koin.dsl.bind
 import org.koin.dsl.module
 
+@OptIn(KoinApiExtension::class)
 val dataRemoteModule = module {
 
     single { RequestWrapperImpl() } bind RequestWrapper::class
@@ -18,5 +20,5 @@ val dataRemoteModule = module {
 
     single { WebServiceFactory.createWebService(get(), SEARCH_BASE_URL) as GitHubService }
 
-    single<RepositoriesRemoteDataSource> { RepositoriesRemoteDataSourceImpl(get(), get()) }
+    single<RepositoriesRemoteDataSource> { RepositoriesRemoteDataSourceImpl(get()) }
 }
