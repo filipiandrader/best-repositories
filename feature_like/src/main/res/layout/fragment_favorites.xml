@@ -6,6 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".fragment.FavoritesFragment">
 
+    <com.bestrepositories.base_feature.customview.emptylist.BREmptyList
+        android:id="@+id/favoritesBREmptyList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
     <com.bestrepositories.base_feature.customview.toolbar.BRToolbar
         android:id="@+id/favoritesBRToolbar"
         android:layout_width="match_parent"

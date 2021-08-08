@@ -48,7 +48,7 @@ class RepositoriesFragment : BaseFragment() {
         )
 
         viewModel.filterRepositoriesViewState.onPostValue(owner) {
-            fillView(it)
+            fillView(it, getString(R.string.warning_search_empty_list))
         }
     }
 
@@ -69,14 +69,34 @@ class RepositoriesFragment : BaseFragment() {
         }
     }
 
-    private fun fillView(repositories: List<RepositoryBinding>) {
+    private fun fillView(
+        repositories: List<RepositoryBinding>,
+        message: String = getString(R.string.warning_empty_list)
+    ) {
         onStateLoading(false)
+        setupVisibility(repositories.isEmpty(), message)
         adapter = RepositoriesAdapter(
             clickListener = { navigation.navigateToDetail(it) },
             likeListener = { viewModel.likeRepository(it) }
         )
         adapter.items = repositories.toMutableList()
         binding.repositoriesRecyclerView.adapter = adapter
+    }
+
+    private fun setupVisibility(isEmpty: Boolean, message: String) {
+        when (isEmpty) {
+            true -> binding.apply {
+                repositoriesBREmptyList.apply {
+                    this.message = message
+                    setVisible()
+                }
+                repositoriesRecyclerView.setGone()
+            }
+            false -> binding.apply {
+                repositoriesBREmptyList.setGone()
+                repositoriesRecyclerView.setVisible()
+            }
+        }
     }
 
     private fun setupOnBackPressedCallback() {

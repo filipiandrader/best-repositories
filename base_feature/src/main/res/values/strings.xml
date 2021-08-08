@@ -16,4 +16,6 @@
     <string name="repository_license">license: %1$s</string>
     <string name="repository_see_on_github">see on github</string>
     <string name="hint_search_repositories">Search repositories (by name or owner name)</string>
+    <string name="warning_empty_list">No favorite repositories :(</string>
+    <string name="warning_search_empty_list">No repositories with this terms :(</string>
 </resources>
