@@ -1,6 +1,7 @@
 package com.bestrepositories.feature_like.fragment
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.addCallback
@@ -27,10 +28,24 @@ class FavoritesFragment : BaseFragment() {
     private val viewModel by viewModel<FavoritesViewModel>()
 
     private lateinit var adapter: FavoritesAdapter
+    private lateinit var recyclerState: Parcelable
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ) = binding.root
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        recyclerState = binding.favoritesRecyclerView.layoutManager?.onSaveInstanceState()!!
+        outState.putParcelable("state", recyclerState)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            recyclerState = savedInstanceState.getParcelable("state")!!
+        }
+    }
 
     override fun setupView() {
         viewModel.getFavoriteRepositories()
@@ -64,6 +79,9 @@ class FavoritesFragment : BaseFragment() {
         )
         adapter.items = repositories.toMutableList()
         binding.favoritesRecyclerView.adapter = adapter
+        if (::recyclerState.isInitialized) {
+            binding.favoritesRecyclerView.layoutManager?.onRestoreInstanceState(recyclerState)
+        }
     }
 
     private fun setupVisibility(isEmpty: Boolean, message: String) {

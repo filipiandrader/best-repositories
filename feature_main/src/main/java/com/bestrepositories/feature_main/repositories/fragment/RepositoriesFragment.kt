@@ -1,6 +1,7 @@
 package com.bestrepositories.feature_main.repositories.fragment
 
 import android.os.Bundle
+import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.addCallback
@@ -28,10 +29,24 @@ class RepositoriesFragment : BaseFragment() {
     private val navigation: RepositoriesNavigation by navDirections()
 
     private lateinit var adapter: RepositoriesAdapter
+    private lateinit var recyclerState: Parcelable
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ) = binding.root
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        recyclerState = binding.repositoriesRecyclerView.layoutManager?.onSaveInstanceState()!!
+        outState.putParcelable("state", recyclerState)
+    }
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        if (savedInstanceState != null) {
+            recyclerState = savedInstanceState.getParcelable("state")!!
+        }
+    }
 
     override fun setupView() {
         viewModel.getRepositories()
@@ -81,6 +96,9 @@ class RepositoriesFragment : BaseFragment() {
         )
         adapter.items = repositories.toMutableList()
         binding.repositoriesRecyclerView.adapter = adapter
+        if (::recyclerState.isInitialized) {
+            binding.repositoriesRecyclerView.layoutManager?.onRestoreInstanceState(recyclerState)
+        }
     }
 
     private fun setupVisibility(isEmpty: Boolean, message: String) {

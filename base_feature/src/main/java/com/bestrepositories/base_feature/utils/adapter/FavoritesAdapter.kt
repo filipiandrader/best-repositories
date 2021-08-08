@@ -13,18 +13,13 @@ import com.bestrepositories.base_feature.utils.extensions.*
 class FavoritesAdapter(
     val clickListener: (repository: RepositoryBinding) -> Unit,
     val likeListener: (repository: RepositoryBinding) -> Unit
-) : BaseAdapter<RepositoryBinding, FavoritesAdapter.RepositoriesViewHolder>() {
-
-    private lateinit var viewHolder: RepositoriesViewHolder
+) : BaseAdapter<RepositoryBinding, FavoritesAdapter.FavoritesViewHolder>() {
 
     override val layoutId = R.layout.item_repository
 
-    override fun createViewHolderInstance(view: View): RepositoriesViewHolder {
-        viewHolder = RepositoriesViewHolder(view)
-        return viewHolder
-    }
+    override fun createViewHolderInstance(view: View) = FavoritesViewHolder(view)
 
-    inner class RepositoriesViewHolder(private val view: View) :
+    inner class FavoritesViewHolder(private val view: View) :
         BaseViewHolder<RepositoryBinding>(view) {
 
         private lateinit var itemRepositoryAvatar: AppCompatImageView
@@ -73,7 +68,7 @@ class FavoritesAdapter(
             itemView.setOnClickListener { clickListener(item) }
         }
 
-        fun updateLike(like: Boolean) {
+        private fun updateLike(like: Boolean) {
             when (like) {
                 true -> itemRepositoryLike.setImageDrawable(
                     view.getDrawable(R.drawable.ic_heart)

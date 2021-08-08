@@ -15,14 +15,9 @@ class RepositoriesAdapter(
     val likeListener: (repository: RepositoryBinding) -> Unit
 ) : BaseAdapter<RepositoryBinding, RepositoriesAdapter.RepositoriesViewHolder>() {
 
-    private lateinit var viewHolder: RepositoriesViewHolder
-
     override val layoutId = R.layout.item_repository
 
-    override fun createViewHolderInstance(view: View): RepositoriesViewHolder {
-        viewHolder = RepositoriesViewHolder(view)
-        return viewHolder
-    }
+    override fun createViewHolderInstance(view: View) = RepositoriesViewHolder(view)
 
     inner class RepositoriesViewHolder(private val view: View) :
         BaseViewHolder<RepositoryBinding>(view) {
@@ -72,7 +67,7 @@ class RepositoriesAdapter(
             itemView.setOnClickListener { clickListener(item) }
         }
 
-        fun updateLike(like: Boolean) {
+        private fun updateLike(like: Boolean) {
             when (like) {
                 true -> itemRepositoryLike.setImageDrawable(
                     view.getDrawable(R.drawable.ic_heart)
