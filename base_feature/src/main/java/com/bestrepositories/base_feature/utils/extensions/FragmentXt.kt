@@ -26,37 +26,7 @@ fun Fragment.hideKeyboard(forceClose: Boolean = false) {
     }
 }
 
-fun Fragment.getColor(@ColorRes colorId: Int) = ContextCompat.getColor(requireContext(), colorId)
-
 fun Fragment.getDrawable(drawableId: Int) = ContextCompat.getDrawable(requireContext(), drawableId)
-
-fun Fragment.openShareIntent(message: String) {
-    val sendIntent: Intent = Intent().apply {
-        action = Intent.ACTION_SEND
-        putExtra(Intent.EXTRA_TEXT, message)
-        type = "text/plain"
-    }
-    startActivity(Intent.createChooser(sendIntent, resources.getText(R.string.share_button_text)))
-}
-
-fun Fragment.addFlags(flags: List<Int>) {
-    flags.map { requireActivity().window.addFlags(it) }
-}
-
-fun Fragment.clearFlags(flags: List<Int>) {
-    flags.map { requireActivity().window.clearFlags(it) }
-}
-
-fun Fragment.addOnBackPressedCallback(owner: LifecycleOwner, onBackPressed: () -> Unit) {
-    (requireActivity() as? AppCompatActivity)?.onBackPressedDispatcher?.addCallback(
-        owner,
-        object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-                onBackPressed()
-            }
-        }
-    )
-}
 
 fun Fragment.openUrl(url: String) {
     startActivity(

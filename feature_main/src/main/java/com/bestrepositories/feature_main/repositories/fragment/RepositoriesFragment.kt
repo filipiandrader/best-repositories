@@ -37,6 +37,8 @@ class RepositoriesFragment : BaseFragment() {
 
         binding.repositoriesFavoritesImageView.setOnClickListener { navigation.navigateToFavorite() }
 
+        binding.repositoriesBRToolbar.doOnSubmit(this) { viewModel.filterRepositories(it) }
+
         adapter = RepositoriesAdapter(
             clickListener = { navigation.navigateToDetail(it) },
             likeListener = { viewModel.likeRepository(it) }
@@ -45,6 +47,10 @@ class RepositoriesFragment : BaseFragment() {
 
     override fun addObservers(owner: LifecycleOwner) {
         viewModel.getRepositoriesViewState.onPostValue(owner) {
+            fillView(it)
+        }
+
+        viewModel.filterRepositoriesViewState.onPostValue(owner) {
             fillView(it)
         }
     }

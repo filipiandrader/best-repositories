@@ -19,10 +19,10 @@
         android:id="@+id/repositoriesFavoritesImageView"
         android:layout_width="28dp"
         android:layout_height="28dp"
-        android:layout_marginTop="48dp"
         android:layout_marginEnd="24dp"
         app:layout_constraintBottom_toBottomOf="@+id/repositoriesBRToolbar"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintVertical_bias="0.43"
         app:layout_constraintTop_toTopOf="@+id/repositoriesBRToolbar"
         app:srcCompat="@drawable/ic_heart_menu" />
 
