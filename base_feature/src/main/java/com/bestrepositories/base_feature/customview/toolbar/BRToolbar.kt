@@ -9,9 +9,11 @@ import androidx.appcompat.widget.AppCompatTextView
 import androidx.fragment.app.Fragment
 import com.bestrepositories.base_feature.R
 import com.bestrepositories.base_feature.utils.extensions.doOnSubmit
+import com.bestrepositories.base_feature.utils.extensions.setGone
 import com.bestrepositories.base_feature.utils.extensions.setInvisible
 import com.bestrepositories.base_feature.utils.extensions.setVisible
 import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 
 class BRToolbar @JvmOverloads constructor(
     context: Context,
@@ -22,7 +24,8 @@ class BRToolbar @JvmOverloads constructor(
 
     private val toolbarTitle: AppCompatTextView
     private val toolbarNavigationIcon: AppCompatImageView
-    private val toolberSearch: TextInputEditText
+    private val toolbarSearch: TextInputEditText
+    private val toolbarSearchInputLayout: TextInputLayout
 
     var title: String = ""
         set(value) {
@@ -34,7 +37,8 @@ class BRToolbar @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.br_toolbar, this, true).run {
             toolbarTitle = findViewById(R.id.toolbarTitleTextView)
             toolbarNavigationIcon = findViewById(R.id.toolbarNavigationIconImageView)
-            toolberSearch = findViewById(R.id.toolberSearchTextInputEditText)
+            toolbarSearch = findViewById(R.id.toolbarSearchTextInputEditText)
+            toolbarSearchInputLayout = findViewById(R.id.toolbarSearchTextInputLayout)
         }
         setupStyleable()
     }
@@ -57,6 +61,10 @@ class BRToolbar @JvmOverloads constructor(
                     true -> toolbarNavigationIcon.setVisible()
                     false -> toolbarNavigationIcon.setInvisible()
                 }
+                when (getBoolean(R.styleable.BRToolbar_hasSearchOption, false)) {
+                    true -> toolbarSearchInputLayout.setVisible()
+                    false -> toolbarSearchInputLayout.setGone()
+                }
             } finally {
                 recycle()
             }
@@ -68,6 +76,6 @@ class BRToolbar @JvmOverloads constructor(
     }
 
     fun doOnSubmit(fragment: Fragment, event: (text: String) -> Unit) {
-        toolberSearch.doOnSubmit(fragment) { event(it) }
+        toolbarSearch.doOnSubmit(fragment) { event(it) }
     }
 }
