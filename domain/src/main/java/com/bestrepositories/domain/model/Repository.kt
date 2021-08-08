@@ -12,7 +12,7 @@ data class Repository(
     val language: String,
     val forksCount: Int,
     val license: RepositoryLicense,
-    val like: Boolean
+    var like: Boolean
 )
 
 data class RepositoryOwner(

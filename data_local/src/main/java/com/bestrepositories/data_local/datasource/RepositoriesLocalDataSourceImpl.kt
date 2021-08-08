@@ -6,9 +6,8 @@ import com.bestrepositories.data_local.mapper.RepositoriesMapper
 import com.bestrepositories.data_local.model.RepositoryLocal
 import com.bestrepositories.domain.model.Repository
 
-class RepositoriesLocalDataSourceImpl(
-    private val repositoryDao: RepositoryDao
-) : RepositoriesLocalDataSource {
+class RepositoriesLocalDataSourceImpl(private val repositoryDao: RepositoryDao) :
+    RepositoriesLocalDataSource {
 
     override suspend fun likeRepository(repository: Repository): Boolean {
         val repositoryLocal = RepositoriesMapper.fromDomain(repository)
