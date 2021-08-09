@@ -1,5 +1,6 @@
 package com.bestrepositories.feature_main.repositories.presentation
 
+import android.os.Parcelable
 import androidx.lifecycle.ViewModel
 import com.bestrepositories.base_feature.mapper.RepositoryMapper
 import com.bestrepositories.base_feature.model.RepositoryBinding
@@ -20,12 +21,23 @@ class RepositoriesViewModel : ViewModel(), KoinComponent {
     private val _getRepositoriesViewState by viewState<List<RepositoryBinding>>()
     private val _likeRepositoryViewState by viewState<Boolean>()
     private val _filterRepositoriesViewState by viewState<List<RepositoryBinding>>()
+    private val _setCurrentStateViewState by viewState<RepositoryBinding>()
 
     val getRepositoriesViewState = _getRepositoriesViewState.asLiveData()
     val likeRepositoryViewState = _likeRepositoryViewState.asLiveData()
     val filterRepositoriesViewState = _filterRepositoriesViewState.asLiveData()
+    val setCurrentStateViewState = _setCurrentStateViewState.asLiveData()
 
     private val repositories = mutableListOf<RepositoryBinding>()
+
+    var recyclerState: Parcelable? = null
+
+    fun setCurrentState(state: Parcelable, repository: RepositoryBinding? = null) {
+        recyclerState = state
+        if (repository != null) {
+            _setCurrentStateViewState.postSuccess(repository)
+        }
+    }
 
     fun getRepositories() {
         _getRepositoriesViewState.postLoading()
@@ -59,5 +71,6 @@ class RepositoriesViewModel : ViewModel(), KoinComponent {
         _getRepositoriesViewState.postNeutral()
         _likeRepositoryViewState.postNeutral()
         _filterRepositoriesViewState.postNeutral()
+        _setCurrentStateViewState.postNeutral()
     }
 }

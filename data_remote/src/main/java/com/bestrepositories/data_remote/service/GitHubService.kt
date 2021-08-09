@@ -12,5 +12,5 @@ interface GitHubService {
 }
 
 object GitHubConstants {
-    const val REPOSITORIES = "repositories?q=language:kotlin&sort=stars"
+    const val REPOSITORIES = "repositories?q=language:kotlin&sort=stars&per_page=100"
 }

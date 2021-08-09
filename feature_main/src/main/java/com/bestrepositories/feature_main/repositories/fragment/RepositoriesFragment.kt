@@ -1,7 +1,6 @@
 package com.bestrepositories.feature_main.repositories.fragment
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.addCallback
@@ -29,23 +28,15 @@ class RepositoriesFragment : BaseFragment() {
     private val navigation: RepositoriesNavigation by navDirections()
 
     private lateinit var adapter: RepositoriesAdapter
-    private lateinit var recyclerState: Parcelable
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ) = binding.root
 
     override fun onSaveInstanceState(outState: Bundle) {
+        val state = binding.repositoriesRecyclerView.layoutManager?.onSaveInstanceState()!!
+        viewModel.setCurrentState(state)
         super.onSaveInstanceState(outState)
-        recyclerState = binding.repositoriesRecyclerView.layoutManager?.onSaveInstanceState()!!
-        outState.putParcelable("state", recyclerState)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (savedInstanceState != null) {
-            recyclerState = savedInstanceState.getParcelable("state")!!
-        }
     }
 
     override fun setupView() {
@@ -65,22 +56,20 @@ class RepositoriesFragment : BaseFragment() {
         viewModel.filterRepositoriesViewState.onPostValue(owner) {
             fillView(it, getString(R.string.warning_search_empty_list))
         }
+
+        viewModel.setCurrentStateViewState.onPostValue(owner) {
+            navigation.navigateToDetail(it)
+        }
     }
 
-    private fun onStateLoading(loading: Boolean) {
-        when (loading) {
-            true -> {
-                binding.apply {
-                    repositoriesBRLoading.setVisible()
-                    repositoriesGroup.setGone()
-                }
-            }
-            false -> {
-                binding.apply {
-                    repositoriesBRLoading.setGone()
-                    repositoriesGroup.setVisible()
-                }
-            }
+    private fun onStateLoading(loading: Boolean) = when (loading) {
+        true -> binding.apply {
+            repositoriesBRLoading.setVisible()
+            repositoriesGroup.setGone()
+        }
+        false -> binding.apply {
+            repositoriesBRLoading.setGone()
+            repositoriesGroup.setVisible()
         }
     }
 
@@ -91,13 +80,16 @@ class RepositoriesFragment : BaseFragment() {
         onStateLoading(false)
         setupVisibility(repositories.isEmpty(), message)
         adapter = RepositoriesAdapter(
-            clickListener = { navigation.navigateToDetail(it) },
+            clickListener = {
+                val state = binding.repositoriesRecyclerView.layoutManager?.onSaveInstanceState()!!
+                viewModel.setCurrentState(state, it)
+            },
             likeListener = { viewModel.likeRepository(it) }
         )
         adapter.items = repositories.toMutableList()
         binding.repositoriesRecyclerView.adapter = adapter
-        if (::recyclerState.isInitialized) {
-            binding.repositoriesRecyclerView.layoutManager?.onRestoreInstanceState(recyclerState)
+        if (viewModel.recyclerState != null) {
+            binding.repositoriesRecyclerView.layoutManager?.onRestoreInstanceState(viewModel.recyclerState)
         }
     }
 

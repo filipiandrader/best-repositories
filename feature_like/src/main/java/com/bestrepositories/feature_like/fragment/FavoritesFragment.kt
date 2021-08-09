@@ -1,7 +1,6 @@
 package com.bestrepositories.feature_like.fragment
 
 import android.os.Bundle
-import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.activity.addCallback
@@ -28,23 +27,14 @@ class FavoritesFragment : BaseFragment() {
     private val viewModel by viewModel<FavoritesViewModel>()
 
     private lateinit var adapter: FavoritesAdapter
-    private lateinit var recyclerState: Parcelable
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
     ) = binding.root
 
     override fun onSaveInstanceState(outState: Bundle) {
+        viewModel.setCurrentState(binding.favoritesRecyclerView.layoutManager?.onSaveInstanceState()!!)
         super.onSaveInstanceState(outState)
-        recyclerState = binding.favoritesRecyclerView.layoutManager?.onSaveInstanceState()!!
-        outState.putParcelable("state", recyclerState)
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        if (savedInstanceState != null) {
-            recyclerState = savedInstanceState.getParcelable("state")!!
-        }
     }
 
     override fun setupView() {
@@ -66,6 +56,10 @@ class FavoritesFragment : BaseFragment() {
         viewModel.filterRepositoriesViewState.onPostValue(owner) {
             fillView(it, getString(R.string.warning_search_empty_list))
         }
+
+        viewModel.setCurrentStateViewState.onPostValue(owner) {
+            navigation.navigateToDetail(it)
+        }
     }
 
     private fun fillView(
@@ -74,13 +68,16 @@ class FavoritesFragment : BaseFragment() {
     ) {
         setupVisibility(repositories.isEmpty(), message)
         adapter = FavoritesAdapter(
-            clickListener = { navigation.navigateToDetail(it) },
+            clickListener = {
+                val state = binding.favoritesRecyclerView.layoutManager?.onSaveInstanceState()!!
+                viewModel.setCurrentState(state, it)
+            },
             likeListener = { viewModel.likeRepository(it) }
         )
         adapter.items = repositories.toMutableList()
         binding.favoritesRecyclerView.adapter = adapter
-        if (::recyclerState.isInitialized) {
-            binding.favoritesRecyclerView.layoutManager?.onRestoreInstanceState(recyclerState)
+        if (viewModel.recyclerState != null) {
+            binding.favoritesRecyclerView.layoutManager?.onRestoreInstanceState(viewModel.recyclerState)
         }
     }
 
