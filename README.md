@@ -1,12 +1,6 @@
 # Best Repositories
 
-## Desenvolvedor
-
-- Nome: Filipi Andrade Rocha
-- Idade: 26 anos
-- Cidade/Estado: Aracaju/Sergipe
-
-## Bibliotecas Usadas
+## What did I used?
 
 - [Google Material](https://material.io/develop/android/docs/getting-started)
 - [Lottie](https://github.com/airbnb/lottie-android)
@@ -19,3 +13,4 @@
 - [Android Jetpack Navigation](https://developer.android.com/guide/navigation)
 - [Room](https://developer.android.com/jetpack/androidx/releases/room)
 - [Lifecycle](https://developer.android.com/jetpack/androidx/releases/lifecycle)
+- [LiveData](https://developer.android.com/topic/libraries/architecture/livedata)
